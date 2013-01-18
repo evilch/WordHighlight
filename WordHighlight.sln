@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvilchUtil.WordHighlight", "EvilchUtil.WordHighlight\EvilchUtil.WordHighlight.csproj", "{33D5C3FB-BE94-48B4-AD07-BF3EF4A153D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvilchUtil.OneNoteHighlight", "EvilchUtil.OneNoteHighlight\EvilchUtil.OneNoteHighlight.csproj", "{AAA857BD-FD2E-4900-BB35-A6C15DD248B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvilchUtil.WordHighlight.Matcher", "EvilchUtil.WordHighlight.Matcher\EvilchUtil.WordHighlight.Matcher.csproj", "{F5025681-1BE4-4D4B-A24E-464EB0077049}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup", "Setup", "{5B2201C0-8125-4C57-BE43-15F55108EE4A}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "OneNoteHighlightSetup", "EvilchUtil.OneNoteHighlight\OneNoteHighlightSetup\OneNoteHighlightSetup.vdproj", "{360325EF-E41E-409C-89F5-FB693DD334E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2024F91D-ACE6-48A0-AE84-C49059FDB357}"
+	ProjectSection(SolutionItems) = preProject
+		readme.txt = readme.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33D5C3FB-BE94-48B4-AD07-BF3EF4A153D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33D5C3FB-BE94-48B4-AD07-BF3EF4A153D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33D5C3FB-BE94-48B4-AD07-BF3EF4A153D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33D5C3FB-BE94-48B4-AD07-BF3EF4A153D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAA857BD-FD2E-4900-BB35-A6C15DD248B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAA857BD-FD2E-4900-BB35-A6C15DD248B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAA857BD-FD2E-4900-BB35-A6C15DD248B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAA857BD-FD2E-4900-BB35-A6C15DD248B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5025681-1BE4-4D4B-A24E-464EB0077049}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5025681-1BE4-4D4B-A24E-464EB0077049}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5025681-1BE4-4D4B-A24E-464EB0077049}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5025681-1BE4-4D4B-A24E-464EB0077049}.Release|Any CPU.Build.0 = Release|Any CPU
+		{360325EF-E41E-409C-89F5-FB693DD334E1}.Debug|Any CPU.ActiveCfg = Debug
+		{360325EF-E41E-409C-89F5-FB693DD334E1}.Debug|Any CPU.Build.0 = Debug
+		{360325EF-E41E-409C-89F5-FB693DD334E1}.Release|Any CPU.ActiveCfg = Release
+		{360325EF-E41E-409C-89F5-FB693DD334E1}.Release|Any CPU.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{360325EF-E41E-409C-89F5-FB693DD334E1} = {5B2201C0-8125-4C57-BE43-15F55108EE4A}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2006/01/customui" loadImage="OnGetImage">
+  <ribbon>
+	 <tabs>
+	  <tab idMso="TabHome">
+    <group id="grpWordHighlight" label="Word Highlight" insertAfterMso="GroupStyles">
+       <button id="btnHighlight" label="Highlight Words" size="large" onAction="HighlightWords" image="HighlightWords.png" screentip="High Light All words." />
+       <button id="btnSpecialNames" label="Special Name" onAction="SpecialNames" image="SpecialNames.png" screentip="Setup Special Names." />
+       <button id="btnStatistics" label="Statistics" onAction="StatisticForm" showImage="false" screentip="Show Statistics Form" enabled="false"/>
+      </group >
+	  </tab>
+	 </tabs>
+  </ribbon>
+</customUI>

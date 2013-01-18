@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<WordHightDefines>
+  <Words>
+    <Word content="particularly" style="background:#4AEA7E" type="IgnoreCase|Contain"/>
+  </Words>
+  <ReferenceFiles>
+    <File path="[MyDocuments]\MagicWord\hotWords.xml"/>
+  </ReferenceFiles>
+</WordHightDefines>

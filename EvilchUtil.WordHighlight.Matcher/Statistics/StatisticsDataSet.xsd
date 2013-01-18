@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="StatisticsDataSet" targetNamespace="http://tempuri.org/StatisticsDataSet.xsd" xmlns:mstns="http://tempuri.org/StatisticsDataSet.xsd" xmlns="http://tempuri.org/StatisticsDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="StatisticsDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="StatisticsDataSet" msprop:Generator_UserDSName="StatisticsDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="HighlightStatistics" msprop:Generator_TableClassName="HighlightStatisticsDataTable" msprop:Generator_TableVarName="tableHighlightStatistics" msprop:Generator_TablePropName="HighlightStatistics" msprop:Generator_RowDeletingName="HighlightStatisticsRowDeleting" msprop:Generator_UserTableName="HighlightStatistics" msprop:Generator_RowChangingName="HighlightStatisticsRowChanging" msprop:Generator_RowEvHandlerName="HighlightStatisticsRowChangeEventHandler" msprop:Generator_RowDeletedName="HighlightStatisticsRowDeleted" msprop:Generator_RowEvArgName="HighlightStatisticsRowChangeEvent" msprop:Generator_RowChangedName="HighlightStatisticsRowChanged" msprop:Generator_RowClassName="HighlightStatisticsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RunType" msprop:Generator_ColumnVarNameInTable="columnRunType" msprop:Generator_ColumnPropNameInRow="RunType" msprop:Generator_ColumnPropNameInTable="RunTypeColumn" msprop:Generator_UserColumnName="RunType" type="xs:string" minOccurs="0" />
+              <xs:element name="WordCount" msprop:Generator_ColumnVarNameInTable="columnWordCount" msprop:Generator_ColumnPropNameInRow="WordCount" msprop:Generator_ColumnPropNameInTable="WordCountColumn" msprop:Generator_UserColumnName="WordCount" type="xs:int" default="0" />
+              <xs:element name="TotalMatchedCount" msprop:Generator_ColumnVarNameInTable="columnTotalMatchedCount" msprop:Generator_ColumnPropNameInRow="TotalMatchedCount" msprop:Generator_ColumnPropNameInTable="TotalMatchedCountColumn" msprop:Generator_UserColumnName="TotalMatchedCount" type="xs:int" minOccurs="0" />
+              <xs:element name="RunId" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnRunId" msprop:Generator_ColumnPropNameInRow="RunId" msprop:Generator_ColumnPropNameInTable="RunIdColumn" msprop:Generator_UserColumnName="RunId" type="xs:string" />
+              <xs:element name="RunTime" msdata:DateTimeMode="Local" msprop:Generator_ColumnVarNameInTable="columnRunTime" msprop:Generator_ColumnPropNameInRow="RunTime" msprop:Generator_ColumnPropNameInTable="RunTimeColumn" msprop:Generator_UserColumnName="RunTime" type="xs:dateTime" />
+              <xs:element name="RunCost" msprop:Generator_ColumnVarNameInTable="columnRunCost" msprop:Generator_ColumnPropNameInRow="RunCost" msprop:Generator_ColumnPropNameInTable="RunCostColumn" msprop:Generator_UserColumnName="RunCost" type="xs:duration" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="WordStatistics" msprop:Generator_TableClassName="WordStatisticsDataTable" msprop:Generator_TableVarName="tableWordStatistics" msprop:Generator_TablePropName="WordStatistics" msprop:Generator_RowDeletingName="WordStatisticsRowDeleting" msprop:Generator_UserTableName="WordStatistics" msprop:Generator_RowChangingName="WordStatisticsRowChanging" msprop:Generator_RowEvHandlerName="WordStatisticsRowChangeEventHandler" msprop:Generator_RowDeletedName="WordStatisticsRowDeleted" msprop:Generator_RowEvArgName="WordStatisticsRowChangeEvent" msprop:Generator_RowChangedName="WordStatisticsRowChanged" msprop:Generator_RowClassName="WordStatisticsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Word" msprop:Generator_ColumnVarNameInTable="columnWord" msprop:Generator_ColumnPropNameInRow="Word" msprop:Generator_ColumnPropNameInTable="WordColumn" msprop:Generator_UserColumnName="Word" type="xs:string" default="&quot;&quot;" />
+              <xs:element name="Color" msprop:Generator_ColumnVarNameInTable="columnColor" msprop:Generator_ColumnPropNameInRow="Color" msprop:Generator_ColumnPropNameInTable="ColorColumn" msprop:Generator_UserColumnName="Color" type="xs:int" />
+              <xs:element name="RunId" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnRunId" msprop:Generator_ColumnPropNameInRow="RunId" msprop:Generator_ColumnPropNameInTable="RunIdColumn" msprop:Generator_UserColumnName="RunId" type="xs:string" />
+              <xs:element name="MatchedCount" msprop:Generator_ColumnVarNameInTable="columnMatchedCount" msprop:Generator_ColumnPropNameInRow="MatchedCount" msprop:Generator_ColumnPropNameInTable="MatchedCountColumn" msprop:Generator_UserColumnName="MatchedCount" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:HighlightStatistics" />
+      <xs:field xpath="mstns:RunId" />
+    </xs:unique>
+    <xs:unique name="PKWorkStatistics" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:WordStatistics" />
+      <xs:field xpath="mstns:Word" />
+      <xs:field xpath="mstns:RunId" />
+    </xs:unique>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="HighlightStatistics_WordStatistics" msdata:parent="HighlightStatistics" msdata:child="WordStatistics" msdata:parentkey="RunId" msdata:childkey="RunId" msprop:Generator_UserChildTable="WordStatistics" msprop:Generator_ChildPropName="GetWordStatisticsRows" msprop:Generator_UserParentTable="HighlightStatistics" msprop:Generator_UserRelationName="HighlightStatistics_WordStatistics" msprop:Generator_RelationVarName="relationHighlightStatistics_WordStatistics" msprop:Generator_ParentPropName="HighlightStatisticsRow" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

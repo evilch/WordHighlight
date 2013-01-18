@@ -1,0 +1,956 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="StoryDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="StoryDBModelStoreContainer">
+          <EntitySet Name="Category" EntityType="StoryDBModel.Store.Category" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CategoryTag" EntityType="StoryDBModel.Store.CategoryTag" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Content" EntityType="StoryDBModel.Store.Content" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ContentType" EntityType="StoryDBModel.Store.ContentType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="KeyWord" EntityType="StoryDBModel.Store.KeyWord" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="KeyWordGroup" EntityType="StoryDBModel.Store.KeyWordGroup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Story" EntityType="StoryDBModel.Store.Story" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="StoryCategory" EntityType="StoryDBModel.Store.StoryCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="StoryKeyWord" EntityType="StoryDBModel.Store.StoryKeyWord" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="StoryTag" EntityType="StoryDBModel.Store.StoryTag" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Style" EntityType="StoryDBModel.Store.Style" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tag" EntityType="StoryDBModel.Store.Tag" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="fk_CategoryTag_Category" Association="StoryDBModel.Store.fk_CategoryTag_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="CategoryTag" EntitySet="CategoryTag" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CategoryTag_Tag" Association="StoryDBModel.Store.fk_CategoryTag_Tag">
+            <End Role="Tag" EntitySet="Tag" />
+            <End Role="CategoryTag" EntitySet="CategoryTag" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Content_ContentType" Association="StoryDBModel.Store.fk_Content_ContentType">
+            <End Role="ContentType" EntitySet="ContentType" />
+            <End Role="Content" EntitySet="Content" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Content_Story" Association="StoryDBModel.Store.fk_Content_Story">
+            <End Role="Story" EntitySet="Story" />
+            <End Role="Content" EntitySet="Content" />
+          </AssociationSet>
+          <AssociationSet Name="fk_KeyWord_KeyWordGroup" Association="StoryDBModel.Store.fk_KeyWord_KeyWordGroup">
+            <End Role="KeyWordGroup" EntitySet="KeyWordGroup" />
+            <End Role="KeyWord" EntitySet="KeyWord" />
+          </AssociationSet>
+          <AssociationSet Name="fk_KeyWord_Style" Association="StoryDBModel.Store.fk_KeyWord_Style">
+            <End Role="Style" EntitySet="Style" />
+            <End Role="KeyWord" EntitySet="KeyWord" />
+          </AssociationSet>
+          <AssociationSet Name="fk_StoryCategory_Category" Association="StoryDBModel.Store.fk_StoryCategory_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="StoryCategory" EntitySet="StoryCategory" />
+          </AssociationSet>
+          <AssociationSet Name="fk_StoryCategory_Story" Association="StoryDBModel.Store.fk_StoryCategory_Story">
+            <End Role="Story" EntitySet="Story" />
+            <End Role="StoryCategory" EntitySet="StoryCategory" />
+          </AssociationSet>
+          <AssociationSet Name="fk_StoryKeyWord_KeyWord" Association="StoryDBModel.Store.fk_StoryKeyWord_KeyWord">
+            <End Role="KeyWord" EntitySet="KeyWord" />
+            <End Role="StoryKeyWord" EntitySet="StoryKeyWord" />
+          </AssociationSet>
+          <AssociationSet Name="fk_StoryKeyWord_Story" Association="StoryDBModel.Store.fk_StoryKeyWord_Story">
+            <End Role="Story" EntitySet="Story" />
+            <End Role="StoryKeyWord" EntitySet="StoryKeyWord" />
+          </AssociationSet>
+          <AssociationSet Name="fk_StoryTag_Story" Association="StoryDBModel.Store.fk_StoryTag_Story">
+            <End Role="Story" EntitySet="Story" />
+            <End Role="StoryTag" EntitySet="StoryTag" />
+          </AssociationSet>
+          <AssociationSet Name="fk_StoryTag_Tag" Association="StoryDBModel.Store.fk_StoryTag_Tag">
+            <End Role="Tag" EntitySet="Tag" />
+            <End Role="StoryTag" EntitySet="StoryTag" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ParentCategoryId" Type="int" />
+          <Property Name="CategoryName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="UpdateBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="UpdateDate" Type="datetime" Nullable="false" />
+          <Property Name="CreateBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="CategoryTag">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+            <PropertyRef Name="TagCode" />
+          </Key>
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="TagCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CreateBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Content">
+          <Key>
+            <PropertyRef Name="StoryId" />
+            <PropertyRef Name="ContentTypeId" />
+          </Key>
+          <Property Name="StoryId" Type="int" Nullable="false" />
+          <Property Name="ContentTypeId" Type="int" Nullable="false" />
+          <Property Name="ContentData" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContentType">
+          <Key>
+            <PropertyRef Name="ContentTypeId" />
+          </Key>
+          <Property Name="ContentTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ContentTypeCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ContentTypeMemeType" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="KeyWord">
+          <Key>
+            <PropertyRef Name="KeyWordId" />
+          </Key>
+          <Property Name="KeyWordId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="KeyWordGroupId" Type="int" Nullable="false" />
+          <Property Name="KeyWordValue" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="KeyWordType" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="CreatetBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdateBy" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="UpdateTime" Type="datetime" Nullable="false" />
+          <Property Name="StyleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KeyWordGroup">
+          <Key>
+            <PropertyRef Name="KeyWordGroupId" />
+          </Key>
+          <Property Name="KeyWordGroupId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="KeyWordGroupName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CreateBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="InsertDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdateBy" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="UpdateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Story">
+          <Key>
+            <PropertyRef Name="StoryId" />
+          </Key>
+          <Property Name="StoryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StoryName" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Tag" Type="nvarchar" MaxLength="1000" />
+          <Property Name="UpdateBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="UpdateDate" Type="datetime" Nullable="false" />
+          <Property Name="CreateBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StoryCategory">
+          <Key>
+            <PropertyRef Name="StoryId" />
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="StoryId" Type="int" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="CreateBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StoryKeyWord">
+          <Key>
+            <PropertyRef Name="KeyWordId" />
+            <PropertyRef Name="StoryId" />
+          </Key>
+          <Property Name="KeyWordId" Type="int" Nullable="false" />
+          <Property Name="StoryId" Type="int" Nullable="false" />
+          <Property Name="StoryKeyWordName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="UpdateBy" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="UpdateDate" Type="datetime" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="Position" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StoryTag">
+          <Key>
+            <PropertyRef Name="TagCode" />
+            <PropertyRef Name="StoryId" />
+          </Key>
+          <Property Name="TagCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="StoryId" Type="int" Nullable="false" />
+          <Property Name="CreateBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Style">
+          <Key>
+            <PropertyRef Name="StyleId" />
+          </Key>
+          <Property Name="StyleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StyleName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CreateBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdateBy" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="UpdateDate" Type="datetime" Nullable="false" />
+          <Property Name="Bold" Type="bit" Nullable="false" />
+          <Property Name="Italic" Type="bit" Nullable="false" />
+          <Property Name="UnderLine" Type="bit" Nullable="false" />
+          <Property Name="ForeColor" Type="nvarchar" MaxLength="20" />
+          <Property Name="BackColor" Type="nvarchar" MaxLength="20" />
+          <Property Name="OtherSetting" Type="xml" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="TagCode" />
+          </Key>
+          <Property Name="TagCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="TagDescription" Type="nvarchar" Nullable="false" MaxLength="1000" />
+          <Property Name="CreateBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_CategoryTag_Category">
+          <End Role="Category" Type="StoryDBModel.Store.Category" Multiplicity="1" />
+          <End Role="CategoryTag" Type="StoryDBModel.Store.CategoryTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="CategoryTag">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CategoryTag_Tag">
+          <End Role="Tag" Type="StoryDBModel.Store.Tag" Multiplicity="1" />
+          <End Role="CategoryTag" Type="StoryDBModel.Store.CategoryTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="TagCode" />
+            </Principal>
+            <Dependent Role="CategoryTag">
+              <PropertyRef Name="TagCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Content_ContentType">
+          <End Role="ContentType" Type="StoryDBModel.Store.ContentType" Multiplicity="1" />
+          <End Role="Content" Type="StoryDBModel.Store.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContentType">
+              <PropertyRef Name="ContentTypeId" />
+            </Principal>
+            <Dependent Role="Content">
+              <PropertyRef Name="ContentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Content_Story">
+          <End Role="Story" Type="StoryDBModel.Store.Story" Multiplicity="1" />
+          <End Role="Content" Type="StoryDBModel.Store.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Story">
+              <PropertyRef Name="StoryId" />
+            </Principal>
+            <Dependent Role="Content">
+              <PropertyRef Name="StoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_KeyWord_KeyWordGroup">
+          <End Role="KeyWordGroup" Type="StoryDBModel.Store.KeyWordGroup" Multiplicity="1" />
+          <End Role="KeyWord" Type="StoryDBModel.Store.KeyWord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KeyWordGroup">
+              <PropertyRef Name="KeyWordGroupId" />
+            </Principal>
+            <Dependent Role="KeyWord">
+              <PropertyRef Name="KeyWordGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_KeyWord_Style">
+          <End Role="Style" Type="StoryDBModel.Store.Style" Multiplicity="1" />
+          <End Role="KeyWord" Type="StoryDBModel.Store.KeyWord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Style">
+              <PropertyRef Name="StyleId" />
+            </Principal>
+            <Dependent Role="KeyWord">
+              <PropertyRef Name="StyleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_StoryCategory_Category">
+          <End Role="Category" Type="StoryDBModel.Store.Category" Multiplicity="1" />
+          <End Role="StoryCategory" Type="StoryDBModel.Store.StoryCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="StoryCategory">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_StoryCategory_Story">
+          <End Role="Story" Type="StoryDBModel.Store.Story" Multiplicity="1" />
+          <End Role="StoryCategory" Type="StoryDBModel.Store.StoryCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Story">
+              <PropertyRef Name="StoryId" />
+            </Principal>
+            <Dependent Role="StoryCategory">
+              <PropertyRef Name="StoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_StoryKeyWord_KeyWord">
+          <End Role="KeyWord" Type="StoryDBModel.Store.KeyWord" Multiplicity="1" />
+          <End Role="StoryKeyWord" Type="StoryDBModel.Store.StoryKeyWord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KeyWord">
+              <PropertyRef Name="KeyWordId" />
+            </Principal>
+            <Dependent Role="StoryKeyWord">
+              <PropertyRef Name="KeyWordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_StoryKeyWord_Story">
+          <End Role="Story" Type="StoryDBModel.Store.Story" Multiplicity="1" />
+          <End Role="StoryKeyWord" Type="StoryDBModel.Store.StoryKeyWord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Story">
+              <PropertyRef Name="StoryId" />
+            </Principal>
+            <Dependent Role="StoryKeyWord">
+              <PropertyRef Name="StoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_StoryTag_Story">
+          <End Role="Story" Type="StoryDBModel.Store.Story" Multiplicity="1" />
+          <End Role="StoryTag" Type="StoryDBModel.Store.StoryTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Story">
+              <PropertyRef Name="StoryId" />
+            </Principal>
+            <Dependent Role="StoryTag">
+              <PropertyRef Name="StoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_StoryTag_Tag">
+          <End Role="Tag" Type="StoryDBModel.Store.Tag" Multiplicity="1" />
+          <End Role="StoryTag" Type="StoryDBModel.Store.StoryTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="TagCode" />
+            </Principal>
+            <Dependent Role="StoryTag">
+              <PropertyRef Name="TagCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StoryDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="StoryDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="StoryDBModel.Category" />
+          <EntitySet Name="CategoryTags" EntityType="StoryDBModel.CategoryTag" />
+          <EntitySet Name="Contents" EntityType="StoryDBModel.Content" />
+          <EntitySet Name="ContentTypes" EntityType="StoryDBModel.ContentType" />
+          <EntitySet Name="KeyWords" EntityType="StoryDBModel.KeyWord" />
+          <EntitySet Name="KeyWordGroups" EntityType="StoryDBModel.KeyWordGroup" />
+          <EntitySet Name="Stories" EntityType="StoryDBModel.Story" />
+          <EntitySet Name="StoryCategories" EntityType="StoryDBModel.StoryCategory" />
+          <EntitySet Name="StoryKeyWords" EntityType="StoryDBModel.StoryKeyWord" />
+          <EntitySet Name="StoryTags" EntityType="StoryDBModel.StoryTag" />
+          <EntitySet Name="Styles" EntityType="StoryDBModel.Style" />
+          <EntitySet Name="Tags" EntityType="StoryDBModel.Tag" />
+          <AssociationSet Name="fk_CategoryTag_Category" Association="StoryDBModel.fk_CategoryTag_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="CategoryTag" EntitySet="CategoryTags" />
+          </AssociationSet>
+          <AssociationSet Name="fk_StoryCategory_Category" Association="StoryDBModel.fk_StoryCategory_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="StoryCategory" EntitySet="StoryCategories" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CategoryTag_Tag" Association="StoryDBModel.fk_CategoryTag_Tag">
+            <End Role="Tag" EntitySet="Tags" />
+            <End Role="CategoryTag" EntitySet="CategoryTags" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Content_ContentType" Association="StoryDBModel.fk_Content_ContentType">
+            <End Role="ContentType" EntitySet="ContentTypes" />
+            <End Role="Content" EntitySet="Contents" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Content_Story" Association="StoryDBModel.fk_Content_Story">
+            <End Role="Story" EntitySet="Stories" />
+            <End Role="Content" EntitySet="Contents" />
+          </AssociationSet>
+          <AssociationSet Name="fk_KeyWord_KeyWordGroup" Association="StoryDBModel.fk_KeyWord_KeyWordGroup">
+            <End Role="KeyWordGroup" EntitySet="KeyWordGroups" />
+            <End Role="KeyWord" EntitySet="KeyWords" />
+          </AssociationSet>
+          <AssociationSet Name="fk_KeyWord_Style" Association="StoryDBModel.fk_KeyWord_Style">
+            <End Role="Style" EntitySet="Styles" />
+            <End Role="KeyWord" EntitySet="KeyWords" />
+          </AssociationSet>
+          <AssociationSet Name="fk_StoryKeyWord_KeyWord" Association="StoryDBModel.fk_StoryKeyWord_KeyWord">
+            <End Role="KeyWord" EntitySet="KeyWords" />
+            <End Role="StoryKeyWord" EntitySet="StoryKeyWords" />
+          </AssociationSet>
+          <AssociationSet Name="fk_StoryCategory_Story" Association="StoryDBModel.fk_StoryCategory_Story">
+            <End Role="Story" EntitySet="Stories" />
+            <End Role="StoryCategory" EntitySet="StoryCategories" />
+          </AssociationSet>
+          <AssociationSet Name="fk_StoryKeyWord_Story" Association="StoryDBModel.fk_StoryKeyWord_Story">
+            <End Role="Story" EntitySet="Stories" />
+            <End Role="StoryKeyWord" EntitySet="StoryKeyWords" />
+          </AssociationSet>
+          <AssociationSet Name="fk_StoryTag_Story" Association="StoryDBModel.fk_StoryTag_Story">
+            <End Role="Story" EntitySet="Stories" />
+            <End Role="StoryTag" EntitySet="StoryTags" />
+          </AssociationSet>
+          <AssociationSet Name="fk_StoryTag_Tag" Association="StoryDBModel.fk_StoryTag_Tag">
+            <End Role="Tag" EntitySet="Tags" />
+            <End Role="StoryTag" EntitySet="StoryTags" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentCategoryId" Type="Int32" />
+          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UpdateBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UpdateDate" Type="DateTime" Nullable="false" />
+          <Property Name="CreateBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="CategoryTags" Relationship="StoryDBModel.fk_CategoryTag_Category" FromRole="Category" ToRole="CategoryTag" />
+          <NavigationProperty Name="StoryCategories" Relationship="StoryDBModel.fk_StoryCategory_Category" FromRole="Category" ToRole="StoryCategory" />
+        </EntityType>
+        <EntityType Name="CategoryTag">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+            <PropertyRef Name="TagCode" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="TagCode" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CreateBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="StoryDBModel.fk_CategoryTag_Category" FromRole="CategoryTag" ToRole="Category" />
+          <NavigationProperty Name="Tag" Relationship="StoryDBModel.fk_CategoryTag_Tag" FromRole="CategoryTag" ToRole="Tag" />
+        </EntityType>
+        <EntityType Name="Content">
+          <Key>
+            <PropertyRef Name="StoryId" />
+            <PropertyRef Name="ContentTypeId" />
+          </Key>
+          <Property Name="StoryId" Type="Int32" Nullable="false" />
+          <Property Name="ContentTypeId" Type="Int32" Nullable="false" />
+          <Property Name="ContentData" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="ContentType" Relationship="StoryDBModel.fk_Content_ContentType" FromRole="Content" ToRole="ContentType" />
+          <NavigationProperty Name="Story" Relationship="StoryDBModel.fk_Content_Story" FromRole="Content" ToRole="Story" />
+        </EntityType>
+        <EntityType Name="ContentType">
+          <Key>
+            <PropertyRef Name="ContentTypeId" />
+          </Key>
+          <Property Name="ContentTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContentTypeCode" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ContentTypeMemeType" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CreateBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Contents" Relationship="StoryDBModel.fk_Content_ContentType" FromRole="ContentType" ToRole="Content" />
+        </EntityType>
+        <EntityType Name="KeyWord">
+          <Key>
+            <PropertyRef Name="KeyWordId" />
+          </Key>
+          <Property Name="KeyWordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KeyWordGroupId" Type="Int32" Nullable="false" />
+          <Property Name="KeyWordValue" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="KeyWordType" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="CreatetBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="UpdateBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="UpdateTime" Type="DateTime" Nullable="false" />
+          <Property Name="StyleId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="KeyWordGroup" Relationship="StoryDBModel.fk_KeyWord_KeyWordGroup" FromRole="KeyWord" ToRole="KeyWordGroup" />
+          <NavigationProperty Name="Style" Relationship="StoryDBModel.fk_KeyWord_Style" FromRole="KeyWord" ToRole="Style" />
+          <NavigationProperty Name="StoryKeyWords" Relationship="StoryDBModel.fk_StoryKeyWord_KeyWord" FromRole="KeyWord" ToRole="StoryKeyWord" />
+        </EntityType>
+        <EntityType Name="KeyWordGroup">
+          <Key>
+            <PropertyRef Name="KeyWordGroupId" />
+          </Key>
+          <Property Name="KeyWordGroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KeyWordGroupName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CreateBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="InsertDate" Type="DateTime" Nullable="false" />
+          <Property Name="UpdateBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="UpdateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="KeyWords" Relationship="StoryDBModel.fk_KeyWord_KeyWordGroup" FromRole="KeyWordGroup" ToRole="KeyWord" />
+        </EntityType>
+        <EntityType Name="Story">
+          <Key>
+            <PropertyRef Name="StoryId" />
+          </Key>
+          <Property Name="StoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StoryName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="Tag" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="UpdateBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UpdateDate" Type="DateTime" Nullable="false" />
+          <Property Name="CreateBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Contents" Relationship="StoryDBModel.fk_Content_Story" FromRole="Story" ToRole="Content" />
+          <NavigationProperty Name="StoryCategories" Relationship="StoryDBModel.fk_StoryCategory_Story" FromRole="Story" ToRole="StoryCategory" />
+          <NavigationProperty Name="StoryKeyWords" Relationship="StoryDBModel.fk_StoryKeyWord_Story" FromRole="Story" ToRole="StoryKeyWord" />
+          <NavigationProperty Name="StoryTags" Relationship="StoryDBModel.fk_StoryTag_Story" FromRole="Story" ToRole="StoryTag" />
+        </EntityType>
+        <EntityType Name="StoryCategory">
+          <Key>
+            <PropertyRef Name="StoryId" />
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="StoryId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="CreateBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="StoryDBModel.fk_StoryCategory_Category" FromRole="StoryCategory" ToRole="Category" />
+          <NavigationProperty Name="Story" Relationship="StoryDBModel.fk_StoryCategory_Story" FromRole="StoryCategory" ToRole="Story" />
+        </EntityType>
+        <EntityType Name="StoryKeyWord">
+          <Key>
+            <PropertyRef Name="KeyWordId" />
+            <PropertyRef Name="StoryId" />
+          </Key>
+          <Property Name="KeyWordId" Type="Int32" Nullable="false" />
+          <Property Name="StoryId" Type="Int32" Nullable="false" />
+          <Property Name="StoryKeyWordName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UpdateBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="UpdateDate" Type="DateTime" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="Position" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="KeyWord" Relationship="StoryDBModel.fk_StoryKeyWord_KeyWord" FromRole="StoryKeyWord" ToRole="KeyWord" />
+          <NavigationProperty Name="Story" Relationship="StoryDBModel.fk_StoryKeyWord_Story" FromRole="StoryKeyWord" ToRole="Story" />
+        </EntityType>
+        <EntityType Name="StoryTag">
+          <Key>
+            <PropertyRef Name="TagCode" />
+            <PropertyRef Name="StoryId" />
+          </Key>
+          <Property Name="TagCode" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="StoryId" Type="Int32" Nullable="false" />
+          <Property Name="CreateBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Story" Relationship="StoryDBModel.fk_StoryTag_Story" FromRole="StoryTag" ToRole="Story" />
+          <NavigationProperty Name="Tag" Relationship="StoryDBModel.fk_StoryTag_Tag" FromRole="StoryTag" ToRole="Tag" />
+        </EntityType>
+        <EntityType Name="Style">
+          <Key>
+            <PropertyRef Name="StyleId" />
+          </Key>
+          <Property Name="StyleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StyleName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CreateBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="UpdateBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="UpdateDate" Type="DateTime" Nullable="false" />
+          <Property Name="Bold" Type="Boolean" Nullable="false" />
+          <Property Name="Italic" Type="Boolean" Nullable="false" />
+          <Property Name="UnderLine" Type="Boolean" Nullable="false" />
+          <Property Name="ForeColor" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="BackColor" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="OtherSetting" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="KeyWords" Relationship="StoryDBModel.fk_KeyWord_Style" FromRole="Style" ToRole="KeyWord" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="TagCode" />
+          </Key>
+          <Property Name="TagCode" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="TagDescription" Type="String" Nullable="false" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="CreateBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="CategoryTags" Relationship="StoryDBModel.fk_CategoryTag_Tag" FromRole="Tag" ToRole="CategoryTag" />
+          <NavigationProperty Name="StoryTags" Relationship="StoryDBModel.fk_StoryTag_Tag" FromRole="Tag" ToRole="StoryTag" />
+        </EntityType>
+        <Association Name="fk_CategoryTag_Category">
+          <End Role="Category" Type="StoryDBModel.Category" Multiplicity="1" />
+          <End Role="CategoryTag" Type="StoryDBModel.CategoryTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="CategoryTag">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_StoryCategory_Category">
+          <End Role="Category" Type="StoryDBModel.Category" Multiplicity="1" />
+          <End Role="StoryCategory" Type="StoryDBModel.StoryCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="StoryCategory">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CategoryTag_Tag">
+          <End Role="Tag" Type="StoryDBModel.Tag" Multiplicity="1" />
+          <End Role="CategoryTag" Type="StoryDBModel.CategoryTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="TagCode" />
+            </Principal>
+            <Dependent Role="CategoryTag">
+              <PropertyRef Name="TagCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Content_ContentType">
+          <End Role="ContentType" Type="StoryDBModel.ContentType" Multiplicity="1" />
+          <End Role="Content" Type="StoryDBModel.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContentType">
+              <PropertyRef Name="ContentTypeId" />
+            </Principal>
+            <Dependent Role="Content">
+              <PropertyRef Name="ContentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Content_Story">
+          <End Role="Story" Type="StoryDBModel.Story" Multiplicity="1" />
+          <End Role="Content" Type="StoryDBModel.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Story">
+              <PropertyRef Name="StoryId" />
+            </Principal>
+            <Dependent Role="Content">
+              <PropertyRef Name="StoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_KeyWord_KeyWordGroup">
+          <End Role="KeyWordGroup" Type="StoryDBModel.KeyWordGroup" Multiplicity="1" />
+          <End Role="KeyWord" Type="StoryDBModel.KeyWord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KeyWordGroup">
+              <PropertyRef Name="KeyWordGroupId" />
+            </Principal>
+            <Dependent Role="KeyWord">
+              <PropertyRef Name="KeyWordGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_KeyWord_Style">
+          <End Role="Style" Type="StoryDBModel.Style" Multiplicity="1" />
+          <End Role="KeyWord" Type="StoryDBModel.KeyWord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Style">
+              <PropertyRef Name="StyleId" />
+            </Principal>
+            <Dependent Role="KeyWord">
+              <PropertyRef Name="StyleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_StoryKeyWord_KeyWord">
+          <End Role="KeyWord" Type="StoryDBModel.KeyWord" Multiplicity="1" />
+          <End Role="StoryKeyWord" Type="StoryDBModel.StoryKeyWord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KeyWord">
+              <PropertyRef Name="KeyWordId" />
+            </Principal>
+            <Dependent Role="StoryKeyWord">
+              <PropertyRef Name="KeyWordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_StoryCategory_Story">
+          <End Role="Story" Type="StoryDBModel.Story" Multiplicity="1" />
+          <End Role="StoryCategory" Type="StoryDBModel.StoryCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Story">
+              <PropertyRef Name="StoryId" />
+            </Principal>
+            <Dependent Role="StoryCategory">
+              <PropertyRef Name="StoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_StoryKeyWord_Story">
+          <End Role="Story" Type="StoryDBModel.Story" Multiplicity="1" />
+          <End Role="StoryKeyWord" Type="StoryDBModel.StoryKeyWord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Story">
+              <PropertyRef Name="StoryId" />
+            </Principal>
+            <Dependent Role="StoryKeyWord">
+              <PropertyRef Name="StoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_StoryTag_Story">
+          <End Role="Story" Type="StoryDBModel.Story" Multiplicity="1" />
+          <End Role="StoryTag" Type="StoryDBModel.StoryTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Story">
+              <PropertyRef Name="StoryId" />
+            </Principal>
+            <Dependent Role="StoryTag">
+              <PropertyRef Name="StoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_StoryTag_Tag">
+          <End Role="Tag" Type="StoryDBModel.Tag" Multiplicity="1" />
+          <End Role="StoryTag" Type="StoryDBModel.StoryTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="TagCode" />
+            </Principal>
+            <Dependent Role="StoryTag">
+              <PropertyRef Name="TagCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StoryDBModelStoreContainer" CdmEntityContainer="StoryDBEntities">
+          <EntitySetMapping Name="Categories"><EntityTypeMapping TypeName="StoryDBModel.Category"><MappingFragment StoreEntitySet="Category">
+            <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+            <ScalarProperty Name="ParentCategoryId" ColumnName="ParentCategoryId" />
+            <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+            <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+            <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+            <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+            <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="CategoryTags"><EntityTypeMapping TypeName="StoryDBModel.CategoryTag"><MappingFragment StoreEntitySet="CategoryTag">
+            <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+            <ScalarProperty Name="TagCode" ColumnName="TagCode" />
+            <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+            <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Contents"><EntityTypeMapping TypeName="StoryDBModel.Content"><MappingFragment StoreEntitySet="Content">
+            <ScalarProperty Name="StoryId" ColumnName="StoryId" />
+            <ScalarProperty Name="ContentTypeId" ColumnName="ContentTypeId" />
+            <ScalarProperty Name="ContentData" ColumnName="ContentData" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ContentTypes"><EntityTypeMapping TypeName="StoryDBModel.ContentType"><MappingFragment StoreEntitySet="ContentType">
+            <ScalarProperty Name="ContentTypeId" ColumnName="ContentTypeId" />
+            <ScalarProperty Name="ContentTypeCode" ColumnName="ContentTypeCode" />
+            <ScalarProperty Name="ContentTypeMemeType" ColumnName="ContentTypeMemeType" />
+            <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+            <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="KeyWords"><EntityTypeMapping TypeName="StoryDBModel.KeyWord"><MappingFragment StoreEntitySet="KeyWord">
+            <ScalarProperty Name="KeyWordId" ColumnName="KeyWordId" />
+            <ScalarProperty Name="KeyWordGroupId" ColumnName="KeyWordGroupId" />
+            <ScalarProperty Name="KeyWordValue" ColumnName="KeyWordValue" />
+            <ScalarProperty Name="KeyWordType" ColumnName="KeyWordType" />
+            <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+            <ScalarProperty Name="CreatetBy" ColumnName="CreatetBy" />
+            <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+            <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+            <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+            <ScalarProperty Name="StyleId" ColumnName="StyleId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="KeyWordGroups"><EntityTypeMapping TypeName="StoryDBModel.KeyWordGroup"><MappingFragment StoreEntitySet="KeyWordGroup">
+            <ScalarProperty Name="KeyWordGroupId" ColumnName="KeyWordGroupId" />
+            <ScalarProperty Name="KeyWordGroupName" ColumnName="KeyWordGroupName" />
+            <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+            <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+            <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+            <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Stories"><EntityTypeMapping TypeName="StoryDBModel.Story"><MappingFragment StoreEntitySet="Story">
+            <ScalarProperty Name="StoryId" ColumnName="StoryId" />
+            <ScalarProperty Name="StoryName" ColumnName="StoryName" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Tag" ColumnName="Tag" />
+            <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+            <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+            <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+            <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="StoryCategories"><EntityTypeMapping TypeName="StoryDBModel.StoryCategory"><MappingFragment StoreEntitySet="StoryCategory">
+            <ScalarProperty Name="StoryId" ColumnName="StoryId" />
+            <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+            <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+            <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="StoryKeyWords"><EntityTypeMapping TypeName="StoryDBModel.StoryKeyWord"><MappingFragment StoreEntitySet="StoryKeyWord">
+            <ScalarProperty Name="KeyWordId" ColumnName="KeyWordId" />
+            <ScalarProperty Name="StoryId" ColumnName="StoryId" />
+            <ScalarProperty Name="StoryKeyWordName" ColumnName="StoryKeyWordName" />
+            <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+            <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+            <ScalarProperty Name="Count" ColumnName="Count" />
+            <ScalarProperty Name="Position" ColumnName="Position" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="StoryTags"><EntityTypeMapping TypeName="StoryDBModel.StoryTag"><MappingFragment StoreEntitySet="StoryTag">
+            <ScalarProperty Name="TagCode" ColumnName="TagCode" />
+            <ScalarProperty Name="StoryId" ColumnName="StoryId" />
+            <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+            <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Styles"><EntityTypeMapping TypeName="StoryDBModel.Style"><MappingFragment StoreEntitySet="Style">
+            <ScalarProperty Name="StyleId" ColumnName="StyleId" />
+            <ScalarProperty Name="StyleName" ColumnName="StyleName" />
+            <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+            <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+            <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+            <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+            <ScalarProperty Name="Bold" ColumnName="Bold" />
+            <ScalarProperty Name="Italic" ColumnName="Italic" />
+            <ScalarProperty Name="UnderLine" ColumnName="UnderLine" />
+            <ScalarProperty Name="ForeColor" ColumnName="ForeColor" />
+            <ScalarProperty Name="BackColor" ColumnName="BackColor" />
+            <ScalarProperty Name="OtherSetting" ColumnName="OtherSetting" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Tags"><EntityTypeMapping TypeName="StoryDBModel.Tag"><MappingFragment StoreEntitySet="Tag">
+            <ScalarProperty Name="TagCode" ColumnName="TagCode" />
+            <ScalarProperty Name="TagDescription" ColumnName="TagDescription" />
+            <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+            <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="StoryModel">
+        <EntityTypeShape EntityType="StoryDBModel.Category" Width="1.5" PointX="0.75" PointY="1.625" Height="2.9417936197916656" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoryDBModel.CategoryTag" Width="1.5" PointX="6" PointY="11.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoryDBModel.Content" Width="1.5" PointX="3" PointY="6.125" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoryDBModel.ContentType" Width="1.5" PointX="0.75" PointY="9.875" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoryDBModel.KeyWord" Width="1.5" PointX="3.75" PointY="15.25" Height="3.5186979166666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoryDBModel.KeyWordGroup" Width="1.5" PointX="1.5" PointY="13.75" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoryDBModel.Story" Width="1.5" PointX="0.75" PointY="5.375" Height="3.3263964843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoryDBModel.StoryCategory" Width="1.5" PointX="3" PointY="3" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoryDBModel.StoryKeyWord" Width="1.5" PointX="6" PointY="5.625" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoryDBModel.StoryTag" Width="1.5" PointX="3" PointY="9" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoryDBModel.Style" Width="1.5" PointX="1.5" PointY="16.875" Height="3.5186979166666745" IsExpanded="true" />
+        <EntityTypeShape EntityType="StoryDBModel.Tag" Width="1.5" PointX="0.75" PointY="22" Height="2.1725878906250031" IsExpanded="true" />
+        <AssociationConnector Association="StoryDBModel.fk_CategoryTag_Category" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.5667936197916656" />
+          <ConnectorPoint PointX="2.625" PointY="4.9417936197916656" />
+          <ConnectorPoint PointX="2.625" PointY="12.749999500000001" />
+          <ConnectorPoint PointX="3.2916666666666665" PointY="12.749999500000001" />
+          <ConnectorPoint PointX="3.4583333333333335" PointY="12.749999500000001" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="12.749999500000001" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="12.749999500000001" />
+          <ConnectorPoint PointX="6" PointY="12.749999500000001" />
+        </AssociationConnector>
+        <AssociationConnector Association="StoryDBModel.fk_StoryCategory_Category" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="3.7521443098958329" />
+          <ConnectorPoint PointX="3" PointY="3.7521443098958329" />
+        </AssociationConnector>
+        <AssociationConnector Association="StoryDBModel.fk_CategoryTag_Tag" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="23.0862939453125" />
+          <ConnectorPoint PointX="6.75" PointY="23.0862939453125" />
+          <ConnectorPoint PointX="6.75" PointY="13.922587890625" />
+        </AssociationConnector>
+        <AssociationConnector Association="StoryDBModel.fk_Content_ContentType" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="9.93846053846154" />
+          <ConnectorPoint PointX="2.5660744349011204" PointY="9.6223861035604177" />
+          <ConnectorPoint PointX="2.6839255650988791" PointY="9.5045349733626612" />
+          <ConnectorPoint PointX="2.8125" PointY="9.37596053846154" />
+          <ConnectorPoint PointX="2.8125" PointY="7.1151432291666659" />
+          <ConnectorPoint PointX="3" PointY="7.1151432291666659" />
+        </AssociationConnector>
+        <AssociationConnector Association="StoryDBModel.fk_Content_Story" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="6.5575716145833329" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="6.557571614583332" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="6.5575716145833329" />
+          <ConnectorPoint PointX="3" PointY="6.5575716145833329" />
+        </AssociationConnector>
+        <AssociationConnector Association="StoryDBModel.fk_KeyWord_KeyWordGroup" ManuallyRouted="false">
+          <ConnectorPoint PointX="3" PointY="15.682444661458334" />
+          <ConnectorPoint PointX="3.2916666666666665" PointY="15.682444661458334" />
+          <ConnectorPoint PointX="3.4583333333333335" PointY="15.682444661458334" />
+          <ConnectorPoint PointX="3.75" PointY="15.682444661458334" />
+        </AssociationConnector>
+        <AssociationConnector Association="StoryDBModel.fk_KeyWord_Style" ManuallyRouted="false">
+          <ConnectorPoint PointX="3" PointY="17.821848958333334" />
+          <ConnectorPoint PointX="3.2916666666666665" PointY="17.821848958333334" />
+          <ConnectorPoint PointX="3.4583333333333335" PointY="17.821848958333334" />
+          <ConnectorPoint PointX="3.75" PointY="17.821848958333334" />
+        </AssociationConnector>
+        <AssociationConnector Association="StoryDBModel.fk_StoryKeyWord_KeyWord" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.90625" PointY="15.25" />
+          <ConnectorPoint PointX="4.90625" PointY="5.84375" />
+          <ConnectorPoint PointX="6" PointY="5.84375" />
+        </AssociationConnector>
+        <AssociationConnector Association="StoryDBModel.fk_StoryCategory_Story" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="5.4373066923076925" />
+          <ConnectorPoint PointX="2.5660744349011204" PointY="5.1212322574065707" />
+          <ConnectorPoint PointX="2.6839255650988791" PointY="5.0033811272088133" />
+          <ConnectorPoint PointX="2.8125" PointY="4.8748066923076925" />
+          <ConnectorPoint PointX="2.8125" PointY="5.360087890625" />
+          <ConnectorPoint PointX="3" PointY="5.172587890625" />
+        </AssociationConnector>
+        <AssociationConnector Association="StoryDBModel.fk_StoryKeyWord_Story" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="8.2711393229166656" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="8.2711393229166656" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="8.2711393229166656" />
+          <ConnectorPoint PointX="2.7291666666666665" PointY="8.2711393229166656" />
+          <ConnectorPoint PointX="2.8958333333333335" PointY="8.2711393229166656" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="8.2711393229166656" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="8.2711393229166656" />
+          <ConnectorPoint PointX="6" PointY="8.2711393229166656" />
+        </AssociationConnector>
+        <AssociationConnector Association="StoryDBModel.fk_StoryTag_Story" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="8.6390877920673077" />
+          <ConnectorPoint PointX="2.4375" PointY="8.8265877920673077" />
+          <ConnectorPoint PointX="2.4375" PointY="8.4363471538461532" />
+          <ConnectorPoint PointX="2.5660744349011213" PointY="8.5649215887472732" />
+          <ConnectorPoint PointX="2.6839255650988787" PointY="8.6827727189450314" />
+          <ConnectorPoint PointX="2.7535744349011213" PointY="8.7524215887472732" />
+          <ConnectorPoint PointX="2.8714255650988787" PointY="8.8702727189450314" />
+          <ConnectorPoint PointX="3.0011528461538459" PointY="9" />
+        </AssociationConnector>
+        <AssociationConnector Association="StoryDBModel.fk_StoryTag_Tag" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="22.511894472656252" />
+          <ConnectorPoint PointX="3.375" PointY="22.511894472656252" />
+          <ConnectorPoint PointX="3.375" PointY="11.172587890625" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
